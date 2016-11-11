@@ -1,0 +1,15 @@
+<p>you typed:
+{{ typesetText }}</p>
+<p>The cases:
+  {% for case in Cases %}
+    {% if case.passed == True %}
+       <p>Great, we do have something for you, here are the information:</p>
+       Name: {{case.name}}
+       {{case.passed}}
+    {% endif %}
+    {% if case.passed == False %}
+        <p>Sorry we don't have these letters for now</p>
+        {{case.passed}}
+    {% endif %}
+  {% endfor %}</p>
+<p>Block: {{Block}}</p>

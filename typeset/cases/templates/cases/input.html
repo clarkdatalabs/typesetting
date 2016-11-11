@@ -1,0 +1,5 @@
+<form action="{% url 'results' %}" method="POST">
+  {% csrf_token %}
+<input type="text" name="typesetText"/>
+<input type="submit">
+</form>
