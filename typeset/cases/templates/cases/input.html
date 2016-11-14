@@ -1,5 +1,21 @@
-<form action="{% url 'results' %}" method="POST">
-  {% csrf_token %}
-<input type="text" name="typesetText"/>
-<input type="submit">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Typing Letters Input</title>
+  {% load static %}
+  <link rel="stylesheet" type='text/css' href="{% static 'cases/base.css' %}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <h1>Type the letters</h1>
+  <div class="letter_input">
+    <form action="{% url 'results' %}" method="POST">
+      {% csrf_token %}
+    <input type="text" name="typesetText" required>
+    <input type="submit">
+    </form>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+form {
+  margin: 0 auto;
+  width: 80%;
+  background: #ffffff !important;
+}
+h1{
+  text-align: center;
+}
+.letter_input{
+  margin: 0 auto;
+  text-align: center;
+}
+.letter_output{
+  margin: 0 auto;
+  text-align: center;
+  width: 80%;
+}
+input[type="text"]{
+  display: inline-block;
+  width: 50%;
+  margin: 0 auto;
+}
+input[type="submit"]{
+  display: block;
+  margin: 0 auto;
+  width: 20%;
+  margin-top: 20px;
+
+}

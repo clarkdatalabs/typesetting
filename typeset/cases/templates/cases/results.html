@@ -1,15 +1,30 @@
-<p>you typed:
-{{ typesetText }}</p>
-<p>The cases:
-  {% for case in Cases %}
-    {% if case.passed == True %}
-       <p>Great, we do have something for you, here are the information:</p>
-       Name: {{case.name}}
-       {{case.passed}}
-    {% endif %}
-    {% if case.passed == False %}
-        <p>Sorry we don't have these letters for now</p>
-        {{case.passed}}
-    {% endif %}
-  {% endfor %}</p>
-<p>Block: {{Block}}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Typing Letters Results</title>
+  {% load static %}
+  <link rel="stylesheet" type='text/css' href="{% static 'cases/base.css' %}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="letter_output">
+      <h3>you typed:</h3>
+      <p>{{ typesetText }}</p>
+      <h3>The Result:</h3>
+        {% for case in Cases %}
+          {% if case.passed == True %}
+             <p>Great, we do have something for you, here are the information:</p>
+             <h3>Name:</h3> <p>{{case.name}}</p>
+             <!-- {{case.passed}} -->
+          {% endif %}
+          {% if case.passed == False %}
+              <p>Sorry we don't have these letters for now</p>
+              <!-- {{case.passed}} -->
+          {% endif %}
+        {% endfor %}
+      <h3>Block: </h3>
+        <p>{{Block}}</p>
+    </div>
+</body>
+</html>
