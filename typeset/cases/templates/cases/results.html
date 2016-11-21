@@ -16,11 +16,16 @@
           {% if case.passed == True %}
              <p>Great, we do have something for you, here are the information:</p>
              <h3>Name:</h3> <p>{{case.name}}</p>
-             <!-- {{case.passed}} -->
+             <h3>Message of Lefting Char:  </h3>
+             <p>After this print, you have {{case.count}} char left in the database</p>
           {% endif %}
           {% if case.passed == False %}
-              <p>Sorry we don't have these letters for now</p>
-              <!-- {{case.passed}} -->
+              <p>Sorry we don't have these letters for {{case.name}} font</p>
+              {% if case.count == "No such char" %}
+                <p>{{case.count}}</p>
+              {% else %}
+                <p>If you choose to do so, you are {{case.count}} short.</p>
+              {% endif %}
           {% endif %}
         {% endfor %}
       <!-- <h3>Block: </h3>

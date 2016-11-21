@@ -5,6 +5,8 @@ form {
 }
 h1{
   text-align: center;
+  color: black;
+  opacity: 0.67;
 }
 .letter_input{
   margin: 0 auto;
@@ -22,6 +24,8 @@ input[type="text"]{
 }
 input[type="submit"]{
   display: block;
+  color: black;
+  opacity: 0.67;
   margin: 0 auto;
   width: 20%;
   margin-top: 20px;
