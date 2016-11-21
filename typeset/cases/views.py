@@ -7,12 +7,15 @@ def input(request):
 def results(request):
     cases = Case.objects.all()
     for case in cases:
-        if (check(request.POST['typesetText'],case)[0] == True):
-            case.passed = True
-            case.count = check(request.POST['typesetText'],case)[1]
-        else:
-            case.passed = False
-            case.count = check(request.POST['typesetText'],case)[1]
+        # if (check(request.POST['typesetText'],case)[0] == True):
+        #     case.passed = True
+        #     case.dict = [1,2,3]
+        #     case.count = check(request.POST['typesetText'],case)[1]
+        # else:
+        #     case.passed = False
+        #     case.dict = [1,2,3]
+        #     case.count = check(request.POST['typesetText'],case)[1]
+        case.dict = check(request.POST['typesetText'],case)
 
     context = {'typesetText':request.POST['typesetText'], 'Cases':cases}
     return render(request, 'cases/results.html',context)
@@ -21,11 +24,14 @@ def results(request):
 def check(text, case):
     blocks = Block.objects.filter(case = case)
     chars = list(set(text))
+    chardict = {}
     for char in chars:
         try:
             count = blocks.get(character=char).count
         except:
-            return [False,"No such char"]
+            chardict[char] = [False, "No such char"]
         if (count < text.count(char)):
-            return [False,text.count(char)-count]
-    return [True,count-text.count(char)]
+            chardict[char] = [False,text.count(char)-count]
+        if (count >= text.count(char)):
+            chardict[char] = [True,text.count(char)-count]
+    return chardict
