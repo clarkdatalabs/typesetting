@@ -11,23 +11,24 @@
     <div class="letter_output">
       <h3>you typed:</h3>
       <p>{{ typesetText }}</p>
-      <h3>The Result:</h3>
         {% for case in Cases %}
         <p>{{case.name}}</p>
-          {{case.dict}}
-            <!-- {% if case.dict[key][0] == True %}
+          {% for key,value in case.dict.items %}
+            <h3>The Result:</h3>
+            {% if value.0 == True %}
                <p>Great, we do have something for you, here are the information:</p>
-               <h3>Message of Lefting Char:  </h3>
-               <p>After this print, you have {{case.dict[key][1]}} char left in the database</p>
+               <h3>Message of Char {{key}}:  </h3>
+               <p>After this print, you have {{value.1}} char left in the database</p>
             {% endif %}
-            {% if case.dict[key][0] == False %}
+            {% if value.0 == False %}
                 <p>Sorry we don't have these letters for {{case.name}} font</p>
-                {% if case.dict[key][1] == "No such char" %}
+                {% if value.1 == "No such char" %}
                   <p>"No such char" for {{key}}</p>
                 {% else %}
-                  <p>If you choose to do so, you are {{case.dict[key][1]}} short.</p>
+                  <p>If you choose to do so, you are {{value.1}} short.</p>
                 {% endif %}
-            {% endif %} -->
+            {% endif %}
+          {% endfor %}
         {% endfor %}
       <!-- <h3>Block: </h3>
         <p>{{Block}}</p> -->
