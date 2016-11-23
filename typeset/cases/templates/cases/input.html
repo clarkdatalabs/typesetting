@@ -10,9 +10,9 @@
 <body>
   <h1>Type the letters</h1>
   <div class="letter_input">
-    <form action="{% url 'results' %}" method="POST">
+    <textarea name="typesetText" form='inputform' style="width: 500px; height: 200px;" placeholder="Enter your input here" required></textarea>
+    <form action="{% url 'results' %}" method="POST" id='inputform'>
       {% csrf_token %}
-    <input type="text" name="typesetText" required>
     <input type="submit">
     </form>
   </div>
