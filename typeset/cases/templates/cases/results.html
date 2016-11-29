@@ -9,29 +9,31 @@
 </head>
 <body>
     <div class="letter_output">
-      <h3>you typed:</h3>
+      <h3>You Typed:</h3>
       <p>{{ typesetText }}</p>
         {% for case in Cases %}
-        <p>{{case.name}}</p>
-          {% for key,value in case.dict.items %}
-            <h3>The Result:</h3>
-            {% if value.0 == True %}
-               <p>Great, we do have something for you, here are the information:</p>
-               <h3>Message of Char {{key}}:  </h3>
-               <p>After this print, you have {{value.1}} char left in the database</p>
-            {% endif %}
-            {% if value.0 == False %}
-                <p>Sorry we don't have these letters for {{case.name}} font</p>
-                {% if value.1 == "No such char" %}
-                  <p>"No such char" for {{key}}</p>
-                {% else %}
-                  <p>If you choose to do so, you are {{value.1}} short.</p>
-                {% endif %}
-            {% endif %}
-          {% endfor %}
+          <button class="resultsfilterbar">{{case.name}}</button>
         {% endfor %}
-      <!-- <h3>Block: </h3>
-        <p>{{Block}}</p> -->
+        {% for case in Cases %}
+        <h3>Font Result for {{case.name}}:</h3>
+          <div class="resultsbox">
+            {% for key,value in case.dict.items %}
+              {% if value.0 == True %}
+                 <h4>Message of Char {{key}}:  </h4>
+                 <p>After this print, you have {{value.1}} char left in the database</p>
+              {% endif %}
+              {% if value.0 == False %}
+                  <h4>Message of Char {{key}}:  </h4>
+                  {% if value.1 == "No such char" %}
+                    <p>"No such char" for {{key}}</p>
+                  {% else %}
+                    <p>If you choose to do so, you are {{value.1}} short.</p>
+                  {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endfor %}
     </div>
 </body>
+
 </html>
