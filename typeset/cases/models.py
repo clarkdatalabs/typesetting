@@ -8,6 +8,9 @@ from django.db import models
 class Case(models.Model):
     name = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.name
+
 class Block(models.Model):
     character = models.CharField(max_length=1)
     case = models.ForeignKey(Case, on_delete=models.CASCADE)
