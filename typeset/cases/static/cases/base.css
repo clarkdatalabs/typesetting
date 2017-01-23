@@ -31,8 +31,12 @@ input[type="submit"]{
   margin-top: 20px;
 }
 .resultsbox{
-  background-color: rgba(0, 0, 255, 0.08);
+  background-color: black;
   padding: 20px;
+}
+.box{
+  margin-bottom: 20px;
+  border: 1px solid;
 }
 .resultsfilterbar{
   margin: 10px;

@@ -11,28 +11,42 @@
     <div class="letter_output">
       <h3>You Typed:</h3>
       <p>{{ typesetText }}</p>
-        {% for case in Cases %}
+        <!-- {% for case in Cases %}
           <button class="resultsfilterbar">{{case.name}}</button>
-        {% endfor %}
-        {% for case in Cases %}
-        <h3>Font Result for {{case.name}}:</h3>
-          <div class="resultsbox">
-            {% for key,value in case.dict.items %}
-              {% if value.0 == True %}
-                 <h4>Message of Char {{key}}:  </h4>
-                 <p>After this print, you have {{value.1}} char left in the database</p>
-              {% endif %}
-              {% if value.0 == False %}
-                  <h4>Message of Char {{key}}:  </h4>
-                  {% if value.1 == "No such char" %}
-                    <p>"No such char" for {{key}}</p>
-                  {% else %}
-                    <p>If you choose to do so, you are {{value.1}} short.</p>
-                  {% endif %}
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% endfor %}
+        {% endfor %} -->
+        <div class="box">
+          <h3>Print</h3>
+          {% for case in Cases %}
+          <h3>Font Result for {{case.name}}:</h3>
+            <div class="resultsbox">
+              {% for key,value in case.dict.items %}
+                {% if value.0 == True %}
+                   <h4>Number of {{key}}: {{value.1}}</h4>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="box">
+          <h3>Can't print</h3>
+          {% for case in Cases %}
+          <h3>Font Result for {{case.name}}:</h3>
+            <div class="resultsbox">
+              {% for key,value in case.dict.items %}
+                {% if value.0 == False %}
+                    <h4>Message of Char {{key}}:  </h4>
+                    {% if value.1 == "No such char" %}
+                      <p>"No such char" for {{key}}</p>
+                    {% else %}
+                      <p>Number of {{key}} short: {{value.1}}</p>
+                    {% endif %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endfor %}
+        </div>
+
     </div>
 </body>
 
