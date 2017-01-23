@@ -15,9 +15,12 @@ def results(request):
 
 def check(text, case):
     blocks = Block.objects.filter(case = case)
+    skipchars = {" "}
     chars = list(set(text))
     chardict = {}
     for char in chars:
+        if (char in skipchars):
+            continue
         try:
             count = blocks.get(character=char).count
             if(count):
