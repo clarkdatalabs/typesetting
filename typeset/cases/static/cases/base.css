@@ -3,6 +3,9 @@ form {
   width: 80%;
   background: #ffffff !important;
 }
+body{
+  background: #f5f5f5;
+}
 h1{
   text-align: center;
   color: black;
@@ -31,7 +34,7 @@ input[type="submit"]{
   margin-top: 20px;
 }
 .resultsbox{
-  background-color: black;
+  background-color: #FDFDFD;
   padding: 20px;
 }
 .box{

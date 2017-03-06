@@ -19,30 +19,11 @@
           {% for case in Cases %}
           <h3>Font Result for {{case.name}}:</h3>
             <div class="resultsbox">
+              <table><tr>
               {% for key,value in case.dict.items %}
-                {% if value.0 == True %}
-                   <h4>Number of {{key}}: {{value.1}}</h4>
-                {% endif %}
+                   <td>Number of {{key}}: {{value.1}}</td>
               {% endfor %}
-            </div>
-          {% endfor %}
-        </div>
-
-        <div class="box">
-          <h3>Can't print</h3>
-          {% for case in Cases %}
-          <h3>Font Result for {{case.name}}:</h3>
-            <div class="resultsbox">
-              {% for key,value in case.dict.items %}
-                {% if value.0 == False %}
-                    <h4>Message of Char {{key}}:  </h4>
-                    {% if value.1 == "No such char" %}
-                      <p>"No such char" for {{key}}</p>
-                    {% else %}
-                      <p>Number of {{key}} short: {{value.1}}</p>
-                    {% endif %}
-                {% endif %}
-              {% endfor %}
+            </tr></table>
             </div>
           {% endfor %}
         </div>
