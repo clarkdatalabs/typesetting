@@ -21,9 +21,11 @@
             <div class="resultsbox">
               <table><tr>
               {% for case in case.dict|dictsortreversed:"count" %}
-                   <!-- <td>Number of {{key}}: {{value.1}}</td> -->
+                   <!-- {% if forloop.first %}
+                     <h3>Font Result for {{case}}:</h3>
+                   {% endif %} -->
                    {% if case.print == 'True' %}
-                   <td>{{ case.char }}:{{ case.count }}</td>
+                   <td>{{ case.char }}:{{ case.input }}/{{ case.database }}</td>
                    {% endif %}
               {% endfor %}
             </tr></table>
@@ -39,23 +41,7 @@
               {% for case in case.dict|dictsortreversed:"count" %}
                    <!-- <td>Number of {{key}}: {{value.1}}</td> -->
                    {% if case.print == 'False' %}
-                   <td>{{ case.char }}:{{ case.count }}</td>
-                   {% endif %}
-              {% endfor %}
-            </tr></table>
-            </div>
-          {% endfor %}
-        </div>
-        <div class="box">
-          <h3>None Exist in Database</h3>
-          {% for case in Cases %}
-          <h3>Font Result for {{case.name}}:</h3>
-            <div class="resultsbox">
-              <table><tr>
-              {% for case in case.dict|dictsortreversed:"count" %}
-                   <!-- <td>Number of {{key}}: {{value.1}}</td> -->
-                   {% if case.print == 'None' %}
-                   <td>Char Name: {{ case.char }}</td>
+                   <td>{{ case.char }}:{{ case.input }}/{{ case.database }}</td>
                    {% endif %}
               {% endfor %}
             </tr></table>

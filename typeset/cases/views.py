@@ -30,6 +30,8 @@ def check(text, case):
                     chardict['char'] = char
                     chardict['print'] = 'False'
                     chardict['count'] = text.count(char)-count
+                    chardict['input'] = text.count(char)
+                    chardict['database'] = count
                     alldict.append(chardict)
                 if (count >= text.count(char)):
                     # chardict[char] = [True,count-text.count(char)]
@@ -37,14 +39,18 @@ def check(text, case):
                     chardict['char'] = char
                     chardict['print'] = 'True'
                     chardict['count'] = count-text.count(char)
+                    chardict['input'] = text.count(char)
+                    chardict['database'] = count
                     alldict.append(chardict)
 
         except:
             # chardict[char] = [False, "No such char"]
             chardict = {}
             chardict['char'] = char
-            chardict['print'] = 'None'
-            chardict['count'] = 'No such char'
+            chardict['print'] = 'False'
+            chardict['count'] = 0
+            chardict['input'] = text.count(char)
+            chardict['database'] = 0
             alldict.append(chardict)
 
     return alldict
