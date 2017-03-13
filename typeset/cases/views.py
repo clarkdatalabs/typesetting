@@ -17,7 +17,7 @@ def check(text, case):
     blocks = Block.objects.filter(case = case)
     skipchars = {" "}
     chars = list(set(text))
-    chardict = {}
+    alldict = []
     for char in chars:
         if (char in skipchars):
             continue
@@ -25,13 +25,29 @@ def check(text, case):
             count = blocks.get(character=char).count
             if(count):
                 if (count < text.count(char)):
-                    chardict[char] = [False,text.count(char)-count]
+                    # chardict[char] = [False,text.count(char)-count]
+                    chardict = {}
+                    chardict['char'] = char
+                    chardict['print'] = 'False'
+                    chardict['count'] = text.count(char)-count
+                    alldict.append(chardict)
                 if (count >= text.count(char)):
-                    chardict[char] = [True,count-text.count(char)]
-        except:
-            chardict[char] = [False, "No such char"]
+                    # chardict[char] = [True,count-text.count(char)]
+                    chardict = {}
+                    chardict['char'] = char
+                    chardict['print'] = 'True'
+                    chardict['count'] = count-text.count(char)
+                    alldict.append(chardict)
 
-    return chardict
+        except:
+            # chardict[char] = [False, "No such char"]
+            chardict = {}
+            chardict['char'] = char
+            chardict['print'] = 'None'
+            chardict['count'] = 'No such char'
+            alldict.append(chardict)
+
+    return alldict
 ## Heat map
 ## Print out the five least char we have
 ## make the input field bigger
