@@ -17,17 +17,18 @@
         <div class="box">
           <h3>Print</h3>
           {% for case in Cases %}
-          <h3>Font Result for {{case.name}}:</h3>
             <div class="resultsbox">
               <table><tr>
-              {% for case in case.dict|dictsortreversed:"count" %}
-                   <!-- {% if forloop.first %}
-                     <h3>Font Result for {{case}}:</h3>
-                   {% endif %} -->
-                   {% if case.print == 'True' %}
-                   <td>{{ case.char }}:{{ case.input }}/{{ case.database }}</td>
-                   {% endif %}
-              {% endfor %}
+              {% if case.caseprint == 'True' %}
+                {% for case in case.dict|dictsortreversed:"count" %}
+                     {% if forloop.first %}
+                       <h3>Font Result for {{case.case}}:</h3>
+                     {% endif %}
+                     {% if case.print == 'True' %}
+                     <td>{{ case.char }}:{{ case.input }}/{{ case.database }}</td>
+                     {% endif %}
+                {% endfor %}
+              {% endif %}
             </tr></table>
             </div>
           {% endfor %}
@@ -35,15 +36,18 @@
         <div class="box">
           <h3>Can't Print</h3>
           {% for case in Cases %}
-          <h3>Font Result for {{case.name}}:</h3>
             <div class="resultsbox">
               <table><tr>
-              {% for case in case.dict|dictsortreversed:"count" %}
-                   <!-- <td>Number of {{key}}: {{value.1}}</td> -->
-                   {% if case.print == 'False' %}
-                   <td>{{ case.char }}:{{ case.input }}/{{ case.database }}</td>
-                   {% endif %}
-              {% endfor %}
+              {% if case.caseprint == 'False' %}
+                {% for case in case.dict|dictsortreversed:"count" %}
+                     {% if forloop.first %}
+                      <h3>Font Result for {{case.case}}:</h3>
+                     {% endif %}
+                     {% if case.print == 'False' %}
+                     <td>{{ case.char }}:{{ case.input }}/{{ case.database }}</td>
+                     {% endif %}
+                {% endfor %}
+              {% endif %}
             </tr></table>
             </div>
           {% endfor %}

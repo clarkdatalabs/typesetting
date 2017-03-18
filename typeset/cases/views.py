@@ -8,7 +8,10 @@ def results(request):
     cases = Case.objects.all()
     for case in cases:
         case.dict = check(request.POST['typesetText'],case)
-
+        case.caseprint = 'True'
+        for object in case.dict:
+            if object['print'] == "False":
+                case.caseprint = "False"
     context = {'typesetText':request.POST['typesetText'], 'Cases':cases}
     return render(request, 'cases/results.html',context)
 
@@ -25,8 +28,8 @@ def check(text, case):
             count = blocks.get(character=char).count
             if(count):
                 if (count < text.count(char)):
-                    # chardict[char] = [False,text.count(char)-count]
                     chardict = {}
+                    chardict['case'] = case
                     chardict['char'] = char
                     chardict['print'] = 'False'
                     chardict['count'] = text.count(char)-count
@@ -34,8 +37,8 @@ def check(text, case):
                     chardict['database'] = count
                     alldict.append(chardict)
                 if (count >= text.count(char)):
-                    # chardict[char] = [True,count-text.count(char)]
                     chardict = {}
+                    chardict['case'] = case
                     chardict['char'] = char
                     chardict['print'] = 'True'
                     chardict['count'] = count-text.count(char)
@@ -44,8 +47,8 @@ def check(text, case):
                     alldict.append(chardict)
 
         except:
-            # chardict[char] = [False, "No such char"]
             chardict = {}
+            chardict['case'] = case
             chardict['char'] = char
             chardict['print'] = 'False'
             chardict['count'] = 0
