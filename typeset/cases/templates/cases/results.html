@@ -8,6 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+  <div class="mainback">
+    <div class="mainbox">
     <div class="letter_output">
       <h3>You Typed:</h3>
       <p>{{ typesetText }}</p>
@@ -24,9 +26,7 @@
                      {% if forloop.first %}
                        <h3>Font Result for {{case.case}}:</h3>
                      {% endif %}
-                     {% if case.print == 'True' %}
                      <td>{{ case.char }}:{{ case.input }}/{{ case.database }}</td>
-                     {% endif %}
                 {% endfor %}
               {% endif %}
             </tr></table>
@@ -43,8 +43,10 @@
                      {% if forloop.first %}
                       <h3>Font Result for {{case.case}}:</h3>
                      {% endif %}
-                     {% if case.print == 'False' %}
-                     <td>{{ case.char }}:{{ case.input }}/{{ case.database }}</td>
+                     {% if case.print == 'False'%}
+                     <td><p style='color:red;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</p></td>
+                     {% else %}
+                     <td><p>{{ case.char }}:{{ case.input }}/{{ case.database }}</p></td>
                      {% endif %}
                 {% endfor %}
               {% endif %}
@@ -54,6 +56,8 @@
         </div>
 
     </div>
+  </div>
+  </div>
 </body>
 
 </html>
