@@ -32,7 +32,7 @@ def check(text, case):
                     chardict['case'] = case
                     chardict['char'] = char
                     chardict['print'] = 'False'
-                    chardict['count'] = text.count(char)-count
+                    chardict['count'] = count-text.count(char)
                     chardict['input'] = text.count(char)
                     chardict['database'] = count
                     alldict.append(chardict)
