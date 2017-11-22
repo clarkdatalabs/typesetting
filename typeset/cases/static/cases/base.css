@@ -30,13 +30,16 @@ h1{
 
 }
 .letter_output{
-  width: 500px;
+  /* width: 500px; */
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
   height:500px;
-  position: absolute;
+  /* position: absolute;
   left: 50%;
   margin-left: -250px;
   top:50%;
-  margin-top: -250px;
+  margin-top: -250px; */
   background-color: white;
   text-align: center;
   border-radius: 10px;
@@ -53,14 +56,24 @@ input[type="submit"]{
 border-radius: 20px;
 }
 .resultsbox{
+  width: 100%;
+  background-color: #FDFDFD;
+  overflow: auto;
+}
+.resultitem{
+  width: 10%;
+  float: left;
   background-color: #FDFDFD;
   padding: 20px;
+  display: inline-block;
 }
 .box{
-  background-color: rgba(51, 51, 51, 0.42);
+  background-color: #2d2730
+  width: 100%;
 }
 .resultsfilterbar{
-  margin: 10px;
+  padding: 20px;
+  width: 100%;
   background-color: rgba(0, 0, 255, 0.08);
 }
 .mainbox{

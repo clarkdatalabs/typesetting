@@ -17,40 +17,36 @@
           <button class="resultsfilterbar">{{case.name}}</button>
         {% endfor %} -->
         <div class="box">
-          <h3>Print</h3>
+          <!-- <h3>Print</h3> -->
           {% for case in Cases %}
             <div class="resultsbox">
-              <table><tr>
               {% if case.caseprint == 'True' %}
                 {% for case in case.dict|dictsortreversed:"count" %}
                      {% if forloop.first %}
                        <h3>Font Result for {{case.case}}:</h3>
                      {% endif %}
-                     <td>{{ case.char }}:{{ case.input }}/{{ case.database }}</td>
+                     <div class="resultitem">{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
                 {% endfor %}
               {% endif %}
-            </tr></table>
             </div>
           {% endfor %}
         </div>
         <div class="box">
-          <h3>Can't Print</h3>
+          <!-- <h3>Can't Print</h3> -->
           {% for case in Cases %}
             <div class="resultsbox">
-              <table><tr>
               {% if case.caseprint == 'False' %}
                 {% for case in case.dict|dictsortreversed:"count" %}
                      {% if forloop.first %}
                       <h3>Font Result for {{case.case}}:</h3>
                      {% endif %}
                      {% if case.print == 'False'%}
-                     <td><p style='color:red;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</p></td>
+                     <div class="resultitem" style='color:red !important;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
                      {% else %}
-                     <td><p>{{ case.char }}:{{ case.input }}/{{ case.database }}</p></td>
+                     <div class="resultitem">{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
                      {% endif %}
                 {% endfor %}
               {% endif %}
-            </tr></table>
             </div>
           {% endfor %}
         </div>
