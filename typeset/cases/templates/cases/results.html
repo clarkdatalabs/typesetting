@@ -41,15 +41,17 @@
                      {% if forloop.first %}
                       <h3>Font Result for {{case.case}}:</h3>
                      {% endif %}
+
                      {% if case.print == 'False'%}
-                     <div class="resultitem" style='background-color:rgb(255, 71, 71) !important;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
-                     {% else %}
-                     {% if case.database|subtract:case.input == "1" %}
-                     <div class="resultitem" style='background-color:rgb(255, 145, 71) !important;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
+                     <div class="resultitem" style='background-color:#f44336 !important;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
+                     {% elif case.database|subtract:case.input == "1" %}
+                     <div class="resultitem" style='background-color: #ff9800 !important;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
+                     {% elif case.database|subtract:case.input == "0" %}
+                     <div class="resultitem" style='background-color:#ffeb3b !important;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
                      {% else %}
                      <div class="resultitem">{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
                      {% endif %}
-                     {% endif %}
+
                 {% endfor %}
               {% endif %}
             </div>
