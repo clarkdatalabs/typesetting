@@ -12,7 +12,7 @@ class Case(models.Model):
         return self.name
 
 class Block(models.Model):
-    character = models.CharField(max_length=1)
+    character = models.CharField(max_length=2)
     case = models.ForeignKey(Case, on_delete=models.CASCADE)
     count = models.IntegerField()
 

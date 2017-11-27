@@ -19,7 +19,25 @@ def results(request):
 def check(text, case):
     blocks = Block.objects.filter(case = case)
     skipchars = {" "}
-    chars = list(set(text))
+    specialchars = ['ff']
+    #chars = list(set(text))
+    chars = []
+    for line in text.split():
+        i = 0
+        while i < (len(line)):
+            # check for special characters, eg. ff
+            if i<(len(line) -2):
+                if (str(line[i]+line[i+1]) in specialchars):
+                    special = str(line[i] + line[i+1])
+                    if special not in chars:
+                        chars.append(special)
+                    i += 2
+                    continue
+            # do a general check for new non-special chars
+            if line[i] not in chars:
+                chars.append(line[i])
+            i += 1
+            
     alldict = []
     for char in chars:
         if (char in skipchars):
