@@ -12,7 +12,7 @@
   <div class="mainback">
     <div class="mainbox">
     <div class="letter_output">
-      <h3>You Typed:</h3>
+      <h3>Are you sure you'd like to override with new minimums? You Typed:</h3>
       <p>{{ typesetText }}</p>
         <!-- {% for case in Cases %}
           <button class="resultsfilterbar">{{case.name}}</button>
@@ -55,11 +55,11 @@
 
                 {% endfor %}
                 <textarea name="typesetText" form='inputform' style="display:none;">{{ typesetText }}</textarea>
-                <textarea name="typesetCase" form='inputform' style="display:none;">{{ case }}</textarea>                
+                <textarea name="typesetCase" form='inputform' style="display:none;">{{ case.case }}</textarea>                
                 <form action="{% url 'override' %}" method="POST" id='inputform'>
                   {% csrf_token %}
-                <h4>Override letters with current letters as minimum</h4>
-                <input type="submit" value="Override">
+                <h4>Override</h4>
+                <input type="submit" value="Confirm">
                 </form>
               {% endif %}
             </div>

@@ -66,3 +66,15 @@ def check(text, case):
 ## Heat map
 ## Print out the five least char we have
 ## make the input field bigger
+
+def override(request):
+#    cases = Case.objects.all()
+    cases = [request.POST['typesetCase']]
+    # with cases as case:
+    #     case.dict = check(request.POST['typesetText'],case)
+    #     case.caseprint = 'True'
+    #     for object in case.dict:
+    #         if object['print'] == "False":
+    #             case.caseprint = "False"
+    context = {'typesetText':request.POST['typesetText'], 'Cases':cases, 'caseName':request.POST['typesetCase']}
+    return render(request, 'cases/override.html',context)
