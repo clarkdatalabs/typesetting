@@ -69,12 +69,12 @@ def check(text, case):
 
 def override(request):
 #    cases = Case.objects.all()
-    cases = [request.POST['typesetCase']]
-    # with cases as case:
-    #     case.dict = check(request.POST['typesetText'],case)
-    #     case.caseprint = 'True'
-    #     for object in case.dict:
-    #         if object['print'] == "False":
-    #             case.caseprint = "False"
-    context = {'typesetText':request.POST['typesetText'], 'Cases':cases, 'caseName':request.POST['typesetCase']}
+    cases = Case.objects.get(pk=request.POST['typesetCase'])
+    context = {'typesetText':request.POST['typesetText'], 'case':cases, 'caseName':request.POST['typesetCase']}
+    return render(request, 'cases/override.html',context)
+
+def success_minchars(request):
+#    cases = Case.objects.all()
+    cases = Case.objects.get(pk=request.POST['typesetCase'])
+    context = {'typesetText':request.POST['typesetText'], 'case':cases, 'caseName':request.POST['typesetCase']}
     return render(request, 'cases/override.html',context)
