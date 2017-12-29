@@ -54,9 +54,9 @@
 
 
                 {% endfor %}
-                <textarea name="typesetText" form='inputform' style="display:none;">{{ typesetText }}</textarea>
-                <textarea name="typesetCase" form='inputform' style="display:none;">{{ case.id }}</textarea>                
-                <form action="{% url 'override' %}" method="POST" id='inputform'>
+                <textarea name="typesetText" form='inputform{{ case.id }}' style="display:none;">{{ typesetText }}</textarea>
+                <textarea name="typesetCase" form='inputform{{ case.id }}' style="display:none;">{{ case.id }}</textarea>                
+                <form action="{% url 'override' %}" method="POST" id='inputform{{ case.id }}'>
                   {% csrf_token %}
                 <h4>Override letters with current letters as minimum</h4>
                 <input type="submit" value="Override">

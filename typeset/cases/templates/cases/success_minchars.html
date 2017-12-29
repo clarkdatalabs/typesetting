@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Typing Letters Input</title>
+  {% load static %}
+  <link rel="stylesheet" type='text/css' href="{% static '/cases/base.css' %}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <header></header>
+  <div class="mainback">
+    <p> did it work? {{case}} {{typesetText}}</p>
+    <div class="mainbox">
+      <div class="letter_input">
+          <textarea name="typesetText" form='inputform' style="width: 100%; height: 50%; -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;" placeholder="Enter your input here" required></textarea>
+          <form action="{% url 'results' %}" method="POST" id='inputform'>
+            {% csrf_token %}
+          <input type="submit">
+          </form>
+        </div>
+    </div>
+
+  </div>
+  <buttom></buttom>
+</body>
+
+</html>

@@ -68,13 +68,17 @@ def check(text, case):
 ## make the input field bigger
 
 def override(request):
-#    cases = Case.objects.all()
-    cases = Case.objects.get(pk=request.POST['typesetCase'])
-    context = {'typesetText':request.POST['typesetText'], 'case':cases, 'caseName':request.POST['typesetCase']}
+    # cases = Case.objects.all()
+    case = Case.objects.get(pk=request.POST['typesetCase'])
+    case.dict = check(request.POST['typesetText'],case)
+    case.caseprint = 'True'
+    for object in case.dict:
+        if object['print'] == "False":
+            case.caseprint = "False"
+    context = {'typesetText':request.POST['typesetText'], 'case':case, 'caseName':request.POST['typesetCase']}
     return render(request, 'cases/override.html',context)
 
 def success_minchars(request):
-#    cases = Case.objects.all()
     cases = Case.objects.get(pk=request.POST['typesetCase'])
     context = {'typesetText':request.POST['typesetText'], 'case':cases, 'caseName':request.POST['typesetCase']}
-    return render(request, 'cases/override.html',context)
+    return render(request, 'cases/success_minchars.html',context)

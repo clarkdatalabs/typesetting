@@ -14,13 +14,13 @@
     <div class="letter_output">
       <h3>Are you sure you'd like to override with new minimums? You Typed:</h3>
       <p>{{ typesetText }}</p>
-      <h3>For {{case.name}}</h3>
+      <!-- <h3>For {{case.name}}</h3> -->
         <!-- {% for case in Cases %}
           <button class="resultsfilterbar">{{case.name}}</button>
         {% endfor %} -->
         <div class="box">
           <!-- <h3>Print</h3> -->
-          {% for case in Cases %}
+          <!-- {% for case in Cases %} -->
             <div class="resultsbox">
               {% if case.caseprint == 'True' %}
                 {% for case in case.dict|dictsortreversed:"count" %}
@@ -31,7 +31,7 @@
                 {% endfor %}
               {% endif %}
             </div>
-          {% endfor %}
+          <!-- {% endfor %} -->
         </div>
         <div class="box">
           <!-- <h3>Can't Print</h3> -->
@@ -39,7 +39,7 @@
               {% if case.caseprint == 'False' %}
                 {% for case in case.dict|dictsortreversed:"count" %}
                      {% if forloop.first %}
-                      <h3>Font Result for {{case.case}}:</h3>
+                      <h3>Character minimums to override for {{case.case}}:</h3>
                      {% endif %}
 
                      {% if case.print == 'False'%}
@@ -49,16 +49,17 @@
                      {% elif case.database|subtract:case.input == "0" %}
                      <div class="resultitem" style='background-color:#ffeb3b !important;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
                      {% else %}
-                     <div class="resultitem">{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
+                     <!-- <div class="resultitem">{{ case.char }}:{{ case.input }}/{{ case.database }}</div> -->
                      {% endif %}
 
 
                 {% endfor %}
+              
 
               {% endif %}
-              <textarea name="typesetText" form='inputform' style="display:none;">{{ typesetText }}</textarea>
-              <textarea name="typesetCase" form='inputform' style="display:none;">{{ case.case }}</textarea>                
-              <form action="{% url 'success_minchars' %}" method="POST" id='inputform'>
+              <textarea name="typesetText" form='inputform{{ case.id }}' style="display:none;">{{ typesetText }}</textarea>
+              <textarea name="typesetCase" form='inputform{{ case.id }}' style="display:none;">{{ case.id }}</textarea>                
+              <form action="{% url 'success_minchars' %}" method="POST" id='inputform{{ case.id }}'>
                 {% csrf_token %}
               <input type="submit" value="Confirm">
               </form>
