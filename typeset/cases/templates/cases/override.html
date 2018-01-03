@@ -14,42 +14,17 @@
     <div class="letter_output">
       <h3>Are you sure you'd like to override with new minimums? You Typed:</h3>
       <p>{{ typesetText }}</p>
-      <!-- <h3>For {{case.name}}</h3> -->
-        <!-- {% for case in Cases %}
-          <button class="resultsfilterbar">{{case.name}}</button>
-        {% endfor %} -->
-        <div class="box">
-          <!-- <h3>Print</h3> -->
-          <!-- {% for case in Cases %} -->
-            <div class="resultsbox">
-              {% if case.caseprint == 'True' %}
-                {% for case in case.dict|dictsortreversed:"count" %}
-                     {% if forloop.first %}
-                       <h3>Font Result for {{case.case}}:</h3>
-                     {% endif %}
-                     <div class="resultitem">{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
-                {% endfor %}
-              {% endif %}
-            </div>
-          <!-- {% endfor %} -->
-        </div>
         <div class="box">
           <!-- <h3>Can't Print</h3> -->
             <div class="resultsbox">
               {% if case.caseprint == 'False' %}
-                {% for case in case.dict|dictsortreversed:"count" %}
+                {% for thecase in case.dict|dictsortreversed:"count" %}
                      {% if forloop.first %}
-                      <h3>Character minimums to override for {{case.case}}:</h3>
+                      <h3>Character minimums to override for {{thecase.case}}:</h3>
                      {% endif %}
 
-                     {% if case.print == 'False'%}
-                     <div class="resultitem" style='background-color:#f44336 !important;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
-                     {% elif case.database|subtract:case.input == "1" %}
-                     <div class="resultitem" style='background-color: #7cec7c !important;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
-                     {% elif case.database|subtract:case.input == "0" %}
-                     <div class="resultitem" style='background-color:#ffeb3b !important;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
-                     {% else %}
-                     <!-- <div class="resultitem">{{ case.char }}:{{ case.input }}/{{ case.database }}</div> -->
+                     {% if thecase.print == 'False'%}
+                     <div class="resultitem" style='background-color:#f44336 !important;'>{{ thecase.char }}:{{ thecase.input }}/{{ thecase.database }}</div>
                      {% endif %}
 
 

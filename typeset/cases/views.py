@@ -79,6 +79,18 @@ def override(request):
     return render(request, 'cases/override.html',context)
 
 def success_minchars(request):
-    cases = Case.objects.get(pk=request.POST['typesetCase'])
-    context = {'typesetText':request.POST['typesetText'], 'case':cases, 'caseName':request.POST['typesetCase']}
+    case = Case.objects.get(pk=request.POST['typesetCase'])
+    case.dict = check(request.POST['typesetText'],case)
+    blocks = Block.objects.filter(case = case)
+    for object in case.dict:
+        if object['print'] == "False":
+            try:
+                theBlock = blocks.get(character=object['char'])
+                theBlock.count = object['input']
+                theBlock.save()
+            except:
+                newBlock = blocks.create(case = case, character=object['char'], count = object['input'])
+                newBlock.save()
+                continue
+    context = {'typesetText':request.POST['typesetText'], 'case':case, 'caseName':request.POST['typesetCase']}
     return render(request, 'cases/success_minchars.html',context)
