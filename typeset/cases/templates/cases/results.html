@@ -58,11 +58,12 @@
                 <textarea name="typesetCase" form='inputform{{ case.id }}' style="display:none;">{{ case.id }}</textarea>                
                 <form action="{% url 'override' %}" method="POST" id='inputform{{ case.id }}'>
                   {% csrf_token %}
-                <h4>Override letters with current letters as minimum</h4>
-                <input type="submit" value="Override">
+                <!-- <span>Override letters with current letters as minimum</span> -->
+                <input type="submit" value="Override counts">
                 </form>
               {% endif %}
             </div>
+
           {% endfor %}
         </div>
 
