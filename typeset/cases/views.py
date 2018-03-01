@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import (Case, Block)
+# from django.http import JsonResponse
 
 def input(request):
     return render(request, 'cases/input.html')
@@ -15,6 +16,20 @@ def results(request):
     context = {'typesetText':request.POST['typesetText'], 'Cases':cases}
     return render(request, 'cases/results.html',context)
 
+
+# def casejson(request):
+#     data = {
+    
+#     }
+
+#     for case in Case.objects.all():
+#         case_data ={
+#             'name':case.name
+#             'blocks':blocks.objects.filter(case=case)
+#         }
+#         data.append()
+
+#     return JsonResponse(list(Case.objects.all().values()), safe=False)
 
 def check(text, case):
     blocks = Block.objects.filter(case = case)
