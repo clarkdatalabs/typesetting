@@ -5,7 +5,7 @@ from .models import Case, Block
 
 class BlockInline(admin.StackedInline):
     model = Block
-    extra = 50
+    extra = 73
 
 class CaseAdmin(admin.ModelAdmin):
     inlines = (BlockInline,)
