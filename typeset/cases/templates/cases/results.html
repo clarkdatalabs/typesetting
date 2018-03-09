@@ -36,6 +36,7 @@
           <!-- <h3>Can't Print</h3> -->
           {% for case in Cases %}
             <div class="resultsbox">
+                <hr >
               {% if case.caseprint == 'False' %}
                 {% for case in case.dict|dictsortreversed:"count" %}
                      {% if forloop.first %}
@@ -44,8 +45,6 @@
 
                      {% if case.print == 'False'%}
                      <div class="resultitem" style='background-color:#f44336 !important;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
-                     {% elif case.database|subtract:case.input == "1" %}
-                     <div class="resultitem" style='background-color: #7cec7c !important;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
                      {% elif case.database|subtract:case.input == "0" %}
                      <div class="resultitem" style='background-color:#ffeb3b !important;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
                      {% else %}
@@ -54,14 +53,18 @@
 
 
                 {% endfor %}
-                <textarea name="typesetText" form='inputform{{ case.id }}' style="display:none;">{{ typesetText }}</textarea>
-                <textarea name="typesetCase" form='inputform{{ case.id }}' style="display:none;">{{ case.id }}</textarea>                
-                <form action="{% url 'override' %}" method="POST" id='inputform{{ case.id }}'>
-                  {% csrf_token %}
-                <!-- <span>Override letters with current letters as minimum</span> -->
-                <input type="submit" value="Override counts">
-                </form>
+
               {% endif %}
+            </div>
+            <div class="resultsbox">
+              <p>Would you like to override block counts for this case (increase to current values)?</p>
+              <textarea name="typesetText" form='inputform{{ case.id }}' style="display:none;">{{ typesetText }}</textarea>
+              <textarea name="typesetCase" form='inputform{{ case.id }}' style="display:none;">{{ case.id }}</textarea>                
+              <form action="{% url 'override' %}" method="POST" id='inputform{{ case.id }}'>
+                {% csrf_token %}
+              <!-- <span>Override letters with current letters as minimum</span> -->
+              <input type="submit" value="Override">
+              </form>
             </div>
 
           {% endfor %}
