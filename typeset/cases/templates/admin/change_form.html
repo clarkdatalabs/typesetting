@@ -1,0 +1,6 @@
+{% extends "admin/change_form.html" %} {% load i18n %} 
+{% block object-tools-items %}
+    {{ block.super }}
+    <script>console.log('is anything happening');</script>
+    <li><a href="www.google.com">Foo</a></li>
+{% endblock %}

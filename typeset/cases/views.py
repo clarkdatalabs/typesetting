@@ -109,3 +109,4 @@ def success_minchars(request):
                 continue
     context = {'typesetText':request.POST['typesetText'], 'case':case, 'caseName':request.POST['typesetCase']}
     return render(request, 'cases/success_minchars.html',context)
+

@@ -18,34 +18,18 @@
           <button class="resultsfilterbar">{{case.name}}</button>
         {% endfor %} -->
         <div class="box">
-          <!-- <h3>Print</h3> -->
-          {% for case in Cases %}
-            <div class="resultsbox">
-              {% if case.caseprint == 'True' %}
-                {% for case in case.dict|dictsortreversed:"count" %}
-                     {% if forloop.first %}
-                       <h3>Font Result for {{case.case}}:</h3>
-                     {% endif %}
-                     <div class="resultitem">{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
-                {% endfor %}
-              {% endif %}
-            </div>
-          {% endfor %}
-        </div>
-        <div class="box">
           <!-- <h3>Can't Print</h3> -->
           {% for case in Cases %}
             <div class="resultsbox">
                 <hr >
-              {% if case.caseprint == 'False' %}
+              {% if case.caseprint %}
                 {% for case in case.dict|dictsortreversed:"count" %}
                      {% if forloop.first %}
                       <h3>Font Result for {{case.case}}:</h3>
                      {% endif %}
-
                      {% if case.print == 'False'%}
                      <div class="resultitem" style='background-color:#f44336 !important;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
-                     {% elif case.database|subtract:case.input == "0" %}
+                     {% elif case.database|subtract:case.input == 0 %}
                      <div class="resultitem" style='background-color:#ffeb3b !important;'>{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
                      {% else %}
                      <div class="resultitem">{{ case.char }}:{{ case.input }}/{{ case.database }}</div>
@@ -57,7 +41,7 @@
               {% endif %}
             </div>
             <div class="resultsbox">
-              <p>Would you like to override block counts for this case (increase to current values)?</p>
+              <p>Would you like to override block counts for this case (increase failing blocks to minimums)?</p>
               <textarea name="typesetText" form='inputform{{ case.id }}' style="display:none;">{{ typesetText }}</textarea>
               <textarea name="typesetCase" form='inputform{{ case.id }}' style="display:none;">{{ case.id }}</textarea>                
               <form action="{% url 'override' %}" method="POST" id='inputform{{ case.id }}'>
